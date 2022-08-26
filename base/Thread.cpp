@@ -1,11 +1,11 @@
-#include "base/Thread.h"
+#include "Thread.h"
 
 #include <stdio.h>
 
 namespace base
 {
 
-Thread::Thread(ThreadFunc func,const string& name) 
+Thread::Thread(ThreadFunc func,const std::string& name) 
 	: started_(false), 
 	  joined_(false), 
 	  pthreadId_(0), 

@@ -1,6 +1,11 @@
 #ifndef MYNETFRAAMEWORK_THREAD_H
 #define MYNETFRAAMEWORK_THREAD_H
 
+#include <functional>
+#include <memory>
+#include <pthread.h>
+#include <string>
+
 namespace base
 {
 /*
@@ -10,7 +15,7 @@ class Thread
 {
 public:
 	typedef std::function<void ()> ThreadFunc;
-	explicit Thread(ThreadFunc fun, const string& name = string());
+	explicit Thread(ThreadFunc fun, const std::string& name = std::string());
 
 	~Thread();
 
@@ -18,7 +23,7 @@ public:
 	int join();
 	
 	pid_t tid() const {return tid_;}
-	const string& name() {return name_;}
+	const std::string& name() {return name_;}
 private:
 	void setDefName();
 
@@ -27,9 +32,8 @@ private:
 	pthread_t	pthreadId_;
 	pid_t		tid_;
 	ThreadFunc	func_;
-	string		name_;
-}
-
+	std::string		name_;
+};
 }
 
 #endif
