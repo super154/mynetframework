@@ -18,6 +18,19 @@ public:
 	{
 		pthread_cond_destroy(&pcond_)
 	}
+	void notify()
+	{
+		pthread_cond_signal(&pcond_);
+	}
+	void notifyAll()
+	{
+		pthread_cond_broadcast(&pcond_);
+	}
+	void wait()
+	{
+		pthread_cond_wait(&pcond_, mutex_.getPthreadMutex());
+	}
+	//bool waitForSecond(double seconds);
 private:
 	MutexLock& mutex_;
 	pthread_cond_t pcond_;
