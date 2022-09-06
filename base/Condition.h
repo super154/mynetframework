@@ -16,7 +16,7 @@ public:
 	}
 	~Condition()
 	{
-		pthread_cond_destroy(&pcond_)
+		pthread_cond_destroy(&pcond_);
 	}
 	void notify()
 	{
@@ -34,7 +34,7 @@ public:
 private:
 	MutexLock& mutex_;
 	pthread_cond_t pcond_;
-}
+};
 }
 
 #endif

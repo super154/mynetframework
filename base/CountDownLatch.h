@@ -13,14 +13,14 @@ public:
 
 	void wait();
 
-	void dountDown();
+	void countDown();
 
 	int getCount() const;
 private:
 	mutable MutexLock mutex_;
 	Condition condition_;
 	int count_;
-}
+};
 }
 
 #endif

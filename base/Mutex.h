@@ -33,26 +33,29 @@ public:
 		pthread_mutex_unlock(&mutex_);
 		// TODO 增加对当前锁所有者的修改
 	}
-	
-}
+	pthread_mutex_t* getPthreadMutex()
+	{
+  		return &mutex_;
+	}	
+};
 
 /*
 	互斥锁控制器，利用RAII机制去管理锁
 */
-class MutexLockCtl
+class MutexLockGuard 
 {
 public:
-	MutexLockCtl(MutexLock& mutex) : mutex_(mutex)
+	MutexLockGuard(MutexLock& mutex) : mutex_(mutex)
 	{
 		mutex_.lock();
 	}
-	~MutexLockCtl()
+	~MutexLockGuard()
 	{
 		mutex_.unlock();
 	}
 private:
 	MutexLock& mutex_;
-}
+};
 
 }
 

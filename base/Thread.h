@@ -5,6 +5,7 @@
 #include <memory>
 #include <pthread.h>
 #include <string>
+#include "CountDownLatch.h"
 
 namespace base
 {
@@ -32,6 +33,7 @@ private:
 	pthread_t	pthreadId_;
 	pid_t		tid_;
 	ThreadFunc	func_;
+	CountDownLatch latch_;
 	std::string		name_;
 };
 }
